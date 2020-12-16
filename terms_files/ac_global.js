@@ -1,0 +1,3 @@
+function setBrowserTimeZone(){var BrowserTimeZone=localStorage.getItem("BrowserTimeZone");var HasSetSessionBrowserTimeZone=sessionStorage.getItem("HasSetSessionBrowserTimeZone");var timeZone=moment.tz.guess(true);if(timeZone===null||timeZone==="")return;if(!HasSetSessionBrowserTimeZone||timeZone!==BrowserTimeZone){$.ajax({type:"POST",contentType:"application/json; charset=utf-8",data:JSON.stringify({timeZone:timeZone}),url:"/Store/Admin/ajax/Admin.asmx/SetSessionBrowserTimeZone",dataType:"json"}).done(function(response){if(response){sessionStorage.setItem("HasSetSessionBrowserTimeZone",true);localStorage.setItem("BrowserTimeZone",timeZone);}
+else{console.error("Timezone not set");}});}}
+setBrowserTimeZone();
